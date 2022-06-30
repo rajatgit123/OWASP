@@ -183,7 +183,7 @@ pipeline {
              }
          }
      }
-	 stage('Slack'){
+	 stage('message'){
             steps{
                 slackSend message: 'owasp security check is done'
                 slackSend message: 'Docker image is deployed on ecs cluster'
