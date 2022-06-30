@@ -79,6 +79,14 @@ pipeline {
 		}
          }
     }
+    stage('Slack notification'){
+            steps{
+                slackSend message: 'code passes sonarqube analysis'
+		slackSend message: 'docker image is deployed on ecs cluster'
+		slackSend message: 'OWASP checks are implemented and report is generated !!'
+            }
+        }
+	 
 	
 	stage('Pipeline Info') {
                  steps {
@@ -176,14 +184,7 @@ pipeline {
              }
          }
      }
-        stage('Slack'){
-            steps{
-                slackSend message: 'code passes sonarqube analysis'
-		slackSend message: 'docker image is deployed on ecs cluster'
-		slackSend message: 'OWASP checks are implemented and report is generated !!'
-            }
-        }
-	 
+        
      post {
              always {
                  echo "Removing container"
@@ -193,6 +194,5 @@ pipeline {
                  '''
              }
          }
-	
-    
+   
 }
