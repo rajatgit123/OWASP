@@ -42,12 +42,7 @@ pipeline {
       }
      }
     }
-	stage('Slack'){
-            steps{
-                slackSend message: 'code passes sonarqube analysis'
-            }
-        }
-    
+	
     // Building Docker images
  stage('Building image') {
       steps{
@@ -190,5 +185,13 @@ pipeline {
                      docker rm owasp
                  '''
              }
-         }    
+         }
+	stage('Slack'){
+            steps{
+                slackSend message: 'code passes sonarqube analysis'
+		slackSend message: 'docker image is deployed on ecs cluster'
+		slackSend message: 'OWASP checks are implemented and report is generated'
+            }
+        }
+    
 }
