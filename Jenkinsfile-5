@@ -190,7 +190,7 @@ pipeline {
             steps{
                 slackSend message: 'code passes sonarqube analysis'
 		slackSend message: 'docker image is deployed on ecs cluster'
-		slackSend message: 'OWASP checks are implemented and report is generated'
+		slackSend message: 'OWASP checks are implemented and report is generated !!'
             }
         }
     
