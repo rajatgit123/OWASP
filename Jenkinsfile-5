@@ -31,7 +31,7 @@ pipeline {
            }
         }
 		
-		stage("sonarqube analysis"){
+        stage("sonarqube analysis"){
             steps{
                 nodejs(nodeJSInstallationName: 'nodejs'){
                     withSonarQubeEnv('sonar'){
@@ -67,10 +67,10 @@ pipeline {
 		}
 		}
     stage ('Run container on ECS') {
-		 steps{
+	steps{
 		  withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'rajatid', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')])
 		  {
-       sh '''
+                        sh '''
 			set +x
                         
 		        
@@ -80,11 +80,9 @@ pipeline {
 			ClusterUpdate=`aws ecs update-service --cluster nodejs-cluster --service nodejs-service --task-definition web-server --desired-count 1`
 			 
       
-			
-		
 			'''
 		}
-    }
+         }
     }
 	
 	stage('Pipeline Info') {
@@ -192,7 +190,5 @@ pipeline {
                      docker rm owasp
                  '''
              }
-         }
- 
-        
-     }
+         }    
+}
